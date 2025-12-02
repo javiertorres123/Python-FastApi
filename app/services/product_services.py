@@ -1,4 +1,4 @@
-from app.models.product_model import Product
+from app.models.product import Product
 
 def get_all_products(db):
     return db.query(Product).all()
