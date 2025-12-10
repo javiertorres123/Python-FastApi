@@ -2,6 +2,9 @@ from datetime import datetime
 from sqlalchemy import ForeignKey, String
 from sqlalchemy.orm import relationship, Mapped, mapped_column, declarative_base
 
+# Import Category from its module (adjust the import path as needed)
+from .category import Category
+
 Base = declarative_base()
 
 class Product(Base):

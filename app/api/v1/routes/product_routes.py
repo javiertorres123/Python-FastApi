@@ -1,25 +1,26 @@
-from fastapi import FastAPI
+from fastapi import APIRouter
 
-app = FastAPI(title="Sistema de Inventario")
+router = APIRouter(
+    prefix="/products",
+    tags=["Products"]
+)
 
-@app.get("/Products/get-all")
+@router.get("/get-all")
 def get_all_products():
     return {"message": "Lista de productos"}
 
-@app.get("/Products/{product_id}")
+@router.get("/{product_id}")
 def get_product_by_id(product_id: int):
     return {"message": f"Detalles del producto {product_id}"}
 
-@app.post("/Products/create")
+@router.post("/create")
 def create_product():
     return {"message": "Producto creado"}
 
-@app.put("/Products/update/{product_id}")
+@router.put("/update/{product_id}")
 def update_product(product_id: int):
     return {"message": f"Producto {product_id} actualizado"}
 
-@app.delete("/Products/delete/{product_id}")
+@router.delete("/delete/{product_id}")
 def delete_product(product_id: int):
     return {"message": f"Producto {product_id} eliminado"}
-
-
