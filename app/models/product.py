@@ -3,7 +3,7 @@ from sqlalchemy import ForeignKey, String
 from sqlalchemy.orm import relationship, Mapped, mapped_column, declarative_base
 
 # Import Category from its module (adjust the import path as needed)
-from .category import Category
+from app.models.category import Category
 
 Base = declarative_base()
 
@@ -21,5 +21,3 @@ class Product(Base):
     category: Mapped["Category"] = relationship(back_populates="products")
     created_at: Mapped[datetime] = mapped_column(nullable=False, default=datetime.utcnow)
     updated_at: Mapped[datetime] = mapped_column(nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
-
-    
