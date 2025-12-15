@@ -8,7 +8,8 @@ from app.services.product_services import (
     get_product_by_id,
     create_product,
     update_product,
-    delete_product
+    delete_product,
+    calculate_margin
 )
 
 def get_all_products_controller(db: Session = Depends(get_db)):
@@ -47,3 +48,9 @@ def delete_product_controller(product_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Product not found")
 
     return delete_product(db, product)
+
+def calculate_margin_controller(product_id: int, db: Session = Depends(get_db)):
+    product = get_product_by_id(db, product_id)
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found")
+    return calculate_margin(product)
